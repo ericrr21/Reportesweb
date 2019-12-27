@@ -1,0 +1,26 @@
+<div class="login-body">
+    <div class="card login-panel ui-fluid">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <img src="assets/layout/images/apple-touch-icon-72x72-precomposed.png">
+            </div>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                    <input type="text" pInputText  [(ngModel)]="nombre">
+                    <label>Usuario</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <span class="md-inputfield">
+                    <input type="password" pPassword feedback= "false" weakLabel="Débil" strongLabel="Fuerte" mediumLabel="Media"
+                           promptLabel="Entre la contraseña"/>
+                    <label>Contraseña</label>
+                </span>
+            </div>
+            <div class="ui-g-12">
+                <button pButton type="button" label="Entrar" style="width: 100%" icon="ui-icon-person" (click)="updateUser()" [routerLink]="'/'" ></button>
+                <button pButton type="button" label="Registro" style="width: 100%" class="pink-btn" icon="ui-icon-person-add" [routerLink]="'/afiliacion'" ></button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<block-ui>
+<div class="container-fluid">
+
+  <form>
+
+    <p-messages [(value)]="msgs"></p-messages>
+    <p-toast></p-toast>
+
+    <p-card header="Paso 1. Seleccione la fuente y luego sus opciones.">
+      <div class="row">
+         <div class="col-md-4">
+           <p-dropdown [options]="fuentes" [(ngModel)]="fuenteSeleccionada" placeholder="Selecccione una fuente" optionLabel="nombre" [showClear]="true" name="tipoDato"
+                        (onChange)="onChangeFuentes($event)"></p-dropdown>
+         </div>
+
+         <div class="col-md-4">
+           <p-multiSelect [options]="opciones" [(ngModel)]="opcionesSeleccionadas" optionLabel="nombre" name="opciones" defaultLabel="Seleccione las opciones"
+                          [filter]="false"></p-multiSelect>
+         </div>
+        <div class="col-md-4"></div>
+      </div>
+    </p-card>
+
+    <br>
+    <p-card header="Paso 2. Seleccione el período. Fechas inicial y final.">
+      <div class="row">
+        <div class="col-md-4">
+          <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true" name="rangeDateComp" showButtonBar="true" dateFormat="dd/mm/yy"
+                      [monthNavigator]="true" [yearNavigator]="true"  [maxDate]="maxDate" [locale]="es" yearRange="2017:2019"></p-calendar>
+
+        </div>
+        <div class="col-xl-4">
+          <p-dropdown [options]="rangosTiempo" [(ngModel)]="rangoTiempoSelected" placeholder="Selecccione un tipo de rango de fecha" optionLabel="nombre" [showClear]="true" name="rangoTiempoComp" ></p-dropdown>
+        </div>
+        <div class="col-md-4">
+          <p-inputSwitch [(ngModel)]="sumarPeriodos" name="sumarPeriodosComp" pTooltip="Sumar Períodos" tooltipPosition="top"></p-inputSwitch>
+        </div>
+      </div>
+
+    </p-card>
+    <br>
+    <p-card header="Paso 3. Forme al menos una apertura.">
+      <h6>Recuerde dar clic en la lista de elementos seleccionados para visualizar los posibles valores a incluir en la apertura correspondiente</h6>
+      <div class="row">
+        <div class="col-xl-7">
+          <p-pickList [source]="openingElementsSource" [target]="openingElementsTarget" sourceHeader="Disponibles" targetHeader="Seleccionados" dragdrop="true"
+                      [responsive]="true" filterBy="name" [style]="{'margin-top':'20px','margin-bottom':'20px'}" [sourceStyle]="{'height': '300px'}" [targetStyle]="{'height': '300px'}"
+                      sourceFilterPlaceholder="Buscar por nombre" targetFilterPlaceholder="Buscar por nombre"
+                      (onTargetSelect)="onTargetSelect($event)" (onMoveToSource)="onMoveToSource($event)">
+            <ng-template let-elemento pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{elemento.name}} </div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-4" *ngIf="openingComponentSelected">
+          <p-table   #dt [columns]="cols" [value]="openingComponentSelected.openingComponentCellList" [(selection)]="selectedFinalValues" dataKey="value" [style]="{'width':'300px'}"
+                   [paginator]="true" [rows]="10" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)"
+          >
+
+            <ng-template pTemplate="header" >
+
+              <tr>
+                <th style="width: 3em">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th >
+                  Valores a incluir en consulta
+                  <input type="text" pInputText size="20" placeholder="Buscar" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr [pSelectableRow]="rowData">
+                <td>
+                  <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                </td>
+                <td>
+                  {{rowData.value}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+
+      </div>
+    </p-card>
+
+    <br>
+<!--    <p-card>-->
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+
+          <button  (click)="handleClick($event)"  class="btn btn-primary" [disabled]="loading">
+            <label *ngIf="!loading " >Buscar</label>
+            <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+          </button>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+<!--    </p-card>-->
+    <br>
+    <br>
+
+  </form>
+</div>
+</block-ui>

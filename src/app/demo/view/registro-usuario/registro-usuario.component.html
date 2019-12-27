@@ -1,0 +1,211 @@
+
+    <div class="ui-fluid">
+        <div class="ui-g">
+            <div class ="ui-g-12">
+                <div class="card no-margin">
+                    <h1 >Registro de nuevos usuarios.</h1>
+                        <div class="ui-g form-group">
+                            <div class="ui-g-12 ui-md-12 ui-lg-12" >
+                                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                              multiple="false" accept="image/*" maxFileSize="1000000" chooseLabel="Seleccione su foto"
+                                              cancelLabel="Cancelar" uploadLabel="Subir imagen">
+                                    <ng-template pTemplate="content">
+                                        <ul *ngIf="uploadedFiles.length">
+                                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                        </ul>
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                <span class="md-inputfield">
+                                    <input id="inputNombre" type="text" pInputText/>
+                                    <label>Nombre(s)</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-3 ui-lg-4">
+                                <span class="md-inputfield">
+                                    <input id="inputApellidoPaterno" type="text" pInputText/>
+                                    <label>Apellido Paterno</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-3 ui-lg-4">
+                                <span class="md-inputfield">
+                                    <input id="inputApellidoMaterno" type="text" pInputText/>
+                                    <label>Apellido materno</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                <span class="md-inputfield">
+                                    <p-calendar showButtonBar="true" dateFormat="dd/mm/yy" [locale]="es"
+                                                [monthNavigator]="true" [yearNavigator]="true" yearRange="1917:2019"></p-calendar>
+                                    <label>Fecha de nacimiento</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                <span class="md-inputfield">
+                                    <p-dropdown [options]="sexos" [(ngModel)]="sexoSeleccionado"></p-dropdown>
+                                    <label>Sexo</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                <span class="md-inputfield">
+                                    <p-inputMask mask="(99)99999999" [(ngModel)]="numTelef" placeholder="(99)99999999" size="30" ></p-inputMask>
+                                    <label>Teléfono</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-6 ui-lg-6" >
+                                <span class="md-inputfield">
+                                    <input id="inputEmail" type="email" pInputText/>
+                                    <label>Email</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6" >
+                                <span class="md-inputfield">
+                                    <input id="inputDireccion" type="text" pInputText/>
+                                    <label>Dirección</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>RFC</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>CURP</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-4 ui-lg-2">
+                                <span class="md-inputfield">
+                                    <p-dropdown [options]="nacionalidades" [(ngModel)]="nacionalidadSeleccionada"></p-dropdown>
+                                    <label>Nacionalidad</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-8 ui-lg-7" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Lugar nacimiento</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-4 ui-lg-3">
+                                <span class="md-inputfield">
+                                    <p-dropdown [options]="estadosCiviles" [(ngModel)]="estadoCivSeleccionado"></p-dropdown>
+                                    <label>Estado civil</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-8 ui-lg-4" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Empresa</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Dirección Empresa</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Sucursal</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Puesto</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-6 ui-lg-2" >
+                                <span class="md-inputfield">
+                                    <p-calendar showButtonBar="true" dateFormat="dd/mm/yy" [locale]="es"
+                                                [monthNavigator]="true" [yearNavigator]="true" yearRange="1917:2019"></p-calendar>
+                                    <label>Fecha de ingreso</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-6 ui-lg-2" >
+                                <span class="md-inputfield">
+                                    <p-spinner size="30" [step]="0.10"></p-spinner>
+                                    <label>Salario</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4" >
+                                <span class="md-inputfield">
+                                    <input  type="text" pInputText/>
+                                    <label>Nick de usuario</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6" >
+                                <span class="md-inputfield">
+                                    <input type="password" pPassword [(ngModel)]="pass0" feedback= "false" weakLabel="Débil" strongLabel="Fuerte"
+                                           mediumLabel="Media" promptLabel="Contraseña" (ngModelChange)="mouseOutPass($event)"/>
+                                    <label>Contraseña</label>
+                                    <div *ngIf="!match" class="ui-message ui-messages-error ui-corner-all">
+                                        Las contraseñas no coinciden
+                                    </div>
+                                </span>
+
+                            </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-6" >
+                                <span class="md-inputfield">
+                                    <input type="password" pPassword [(ngModel)]="pass1" feedback= "false" weakLabel="Débil" strongLabel="Fuerte"
+                                           mediumLabel="Media" promptLabel="Repita la contraseña"  (ngModelChange)="mouseOutPass($event)"
+                                    />
+                                    <label>Repita la contraseña</label>
+                                    <div *ngIf="!match" class="ui-message ui-messages-error ui-corner-all">
+                                        Las contraseñas no coinciden
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="ui-g-12 ui-md-12 ui-lg-12" >
+                                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                              multiple="false" accept="image/*" maxFileSize="1000000" chooseLabel="Seleccione su credencial"
+                                              cancelLabel="Cancelar" uploadLabel="Subir imagen">
+                                    <ng-template pTemplate="content">
+                                        <ul *ngIf="uploadedFiles.length">
+                                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                        </ul>
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                <p-button  type="button" label="Borrar firma"(click)="clear()" icon="ui-icon-delete-forever">
+                                </p-button>
+
+                            </div>
+                            <div class="ui-g-12 ui-md-12 ui-lg-12" >
+                                Firme aquí:
+                                <signature-pad [options]="options" (onBeginEvent)="drawBegin()" (onEndEvent)="drawComplete()"></signature-pad>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                <button pButton type="button" label="Guardar" style="width:140px;display: block; margin-left: auto; margin-right: auto;"
+                                        icon="ui-icon-person-add" (click)="showDialog()"></button>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!--p-dialog header="Operación exitosa" [(visible)]="display" modal="true">
+    Nuevo usuario creado.
+    <p-footer>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                <button pButton type="button" label="Ok"
+                        style="width:140px;display: block; margin-left: auto; margin-right: auto;"
+                        icon="ui-icon-check" (click)="closeDialog()"></button>
+            </div>
+        </div>
+    </p-footer>
+</p-dialog-->
+
+
+
